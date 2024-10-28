@@ -1,5 +1,6 @@
 package com.example.order_management_system.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,33 +22,42 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
-
+@Table(name = "tb_product")
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
 
-    @Transient
-    private Set<Product> products = new HashSet<>();
+    private String description;
 
-    public Category(Long id, String name) {
+    private Double price;
+
+    private String imgUrl;
+
+    @Transient
+    private Set<Category> categories = new HashSet<>();
+
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id) && Objects.equals(name, category.name);
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }
