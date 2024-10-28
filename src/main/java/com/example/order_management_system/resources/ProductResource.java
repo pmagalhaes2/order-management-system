@@ -24,7 +24,7 @@ public class ProductResource {
         return ResponseEntity.status(HttpStatus.OK).body(productService.findAll());
     }
 
-    @GetMapping("/{id]")
+    @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(productService.findById(id));
     }
