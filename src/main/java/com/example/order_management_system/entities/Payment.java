@@ -1,5 +1,6 @@
 package com.example.order_management_system.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,5 +33,6 @@ public class Payment implements Serializable {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     private Order order;
 }

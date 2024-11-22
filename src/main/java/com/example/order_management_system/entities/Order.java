@@ -66,4 +66,8 @@ public class Order {
         }
     }
 
+    public double getTotal() {
+        return items.stream().mapToDouble(OrderItem::getSubTotal).sum();
+    }
+
 }
