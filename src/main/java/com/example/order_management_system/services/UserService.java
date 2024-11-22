@@ -2,6 +2,7 @@ package com.example.order_management_system.services;
 
 import com.example.order_management_system.entities.User;
 import com.example.order_management_system.repositories.UserRepository;
+import com.example.order_management_system.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,7 @@ public class UserService {
     }
 
     public User findById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.get();
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void deleteById(Long id) {
